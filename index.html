@@ -1110,7 +1110,7 @@
             <script src="https://www.google.com/recaptcha/api.js" async defer></script>
             <script>
             // --- Stylist Tab JS ---
-            const STYLIST_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzF6tnq3255H6BqKuoXMmq6A2KFGjqzImU4eQUi3Igew47zAxe6kuhGpPdUlKLqqmniOA/exec';
+            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzF6tnq3255H6BqKuoXMmq6A2KFGjqzImU4eQUi3Igew47zAxe6kuhGpPdUlKLqqmniOA/exec';
             let stylistSessionId='', stylistUserToken='', stylistIdentity='', stylistStep=0, stylistWaiting=false, stylistCaptchaGood=false;
             let stylistTryCount = 0, stylistFirstTryAt = 0;
 
@@ -1146,7 +1146,7 @@
               stylistIdentity=type;
               document.getElementById('stylist-modal').style.display = 'none';
               stylistShowChat();
-              fetch(STYLIST_SCRIPT_URL+'?action=start', {
+              fetch(SCRIPT_URL+'?action=start', {
                 method:'POST', headers:{'Content-Type':'application/json'},
                 body:JSON.stringify({identity:type})
               })
@@ -1180,7 +1180,7 @@
               document.getElementById('stylist-sendbtn').disabled=true;
               stylistAddBubble(val, 'user');
               stylistShowLoader(true);
-              fetch(STYLIST_SCRIPT_URL+'?action=message', {
+              fetch(SCRIPT_URL+'?action=message', {
                 method:'POST', headers:{'Content-Type':'application/json'},
                 body:JSON.stringify({session_id:stylistSessionId, user_token:stylistUserToken, msg:val})
               })
@@ -1221,7 +1221,7 @@
 
             function stylistSendFinal(choice){
               stylistShowLoader(true);
-              fetch(STYLIST_SCRIPT_URL+'?action=choice', {
+              fetch(SCRIPT_URL+'?action=choice', {
                 method:'POST', headers:{'Content-Type':'application/json'},
                 body:JSON.stringify({session_id:stylistSessionId, user_token:stylistUserToken, choice:choice})
               })
