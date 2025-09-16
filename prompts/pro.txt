@@ -1,0 +1,119 @@
+# Pro Workflow - Advanced Prompt Templates
+
+## Executive Brief Questions
+
+### Strategic Context
+1. What are the key performance indicators for this initiative?
+2. How does this align with our current business objectives?
+3. What are the potential risks and mitigation strategies?
+4. What resources and timeline constraints should we consider?
+
+### Stakeholder Analysis
+1. Who are the key decision makers and influencers?
+2. What are their primary concerns and priorities?
+3. How will success be measured by different stakeholders?
+4. What approval processes need to be considered?
+
+## Advanced Prompt Skeletons for Pro Workflows
+
+### Strategic Analysis Template
+```
+Analyze [SITUATION/CHALLENGE] from multiple perspectives:
+- Market implications and competitive advantages
+- Resource allocation and ROI considerations  
+- Risk assessment and contingency planning
+- Long-term strategic alignment
+
+Provide actionable recommendations with supporting data.
+```
+
+### Process Optimization Template
+```
+Optimize [CURRENT_PROCESS] for maximum efficiency:
+- Identify bottlenecks and inefficiencies
+- Propose automation opportunities
+- Calculate potential time/cost savings
+- Outline implementation roadmap with milestones
+```
+
+### Technical Integration Template
+```
+Design [SYSTEM/SOLUTION] integration strategy:
+- Architecture requirements and constraints
+- API specifications and data flow
+- Security and compliance considerations
+- Performance benchmarks and monitoring
+```
+
+### Decision Framework Template
+```
+Evaluate [OPTIONS/ALTERNATIVES] using structured criteria:
+- Weighted decision matrix with key factors
+- Cost-benefit analysis for each option
+- Implementation complexity and timeline
+- Recommend optimal approach with rationale
+```
+
+### Executive Communication Template
+```
+Prepare executive summary for [TOPIC/PROJECT]:
+- Key findings and insights (maximum 3 points)
+- Financial impact and resource requirements
+- Timeline and critical dependencies
+- Recommended next steps and decision points
+```
+
+## Advanced Questioning Techniques
+
+### Root Cause Analysis
+- What underlying factors contribute to this challenge?
+- How do different variables interact and influence outcomes?
+- What patterns emerge when analyzing historical data?
+
+### Future State Visioning
+- What does optimal performance look like in this area?
+- What capabilities need to be developed or acquired?
+- How will success be sustained over time?
+
+### Competitive Intelligence
+- How are industry leaders approaching similar challenges?
+- What emerging trends could impact our strategy?
+- Where are the opportunities for differentiation?
+
+## Efficiency Maximizers for Professionals
+
+### Batch Processing Approach
+1. **Information Gathering**: Collect all relevant data upfront
+2. **Analysis Sprint**: Conduct deep analysis in focused sessions
+3. **Solution Design**: Develop comprehensive recommendations
+4. **Stakeholder Alignment**: Present findings and secure buy-in
+
+### Template Customization Guidelines
+- Adapt language to match organizational terminology
+- Include relevant KPIs and success metrics
+- Reference specific tools and systems in use
+- Align with existing workflows and approval processes
+
+## Quality Assurance Checks
+
+### Before Implementation
+- [ ] Solution addresses root cause, not just symptoms
+- [ ] Recommendations are data-driven and measurable
+- [ ] Implementation plan includes risk mitigation
+- [ ] Stakeholder concerns have been addressed
+- [ ] ROI projections are realistic and defendable
+
+### Post-Implementation
+- [ ] Performance metrics are being tracked
+- [ ] Stakeholders are satisfied with outcomes
+- [ ] Lessons learned have been documented
+- [ ] Process improvements have been identified
+- [ ] Success factors can be replicated elsewhere
+
+## Pro Tips for Advanced Users
+
+1. **Think Systems**: Consider interdependencies and downstream effects
+2. **Lead with Data**: Support recommendations with quantitative analysis
+3. **Plan for Scale**: Design solutions that can grow with the organization
+4. **Manage Change**: Include change management in all implementations
+5. **Document Everything**: Create knowledge assets for future reference
