@@ -675,6 +675,20 @@
 
         /* --- Stylist Tab Styles --- */
         body.stylist-tab { background: linear-gradient(120deg, #e0c3fc, #8ec5fc, #e0c3fc 80%); }
+        #stylist-content { position:relative; min-height:600px; }
+        #stylist-consent {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            width: 100%;
+            height: 100%;
+            background: #291649e7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 11;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
         #stylist-main { background: rgba(255,255,255,0.94); box-shadow: 0 4px 36px #d5d7f24a;
           border-radius: 20px; padding: 2rem 2.5rem; max-width: 370px; min-width: 280px; min-height:390px; margin:2rem auto; text-align:center; position:relative;}
         .stylist-bigbutton { background: #311b58; color:white; border:none;border-radius:33px;
@@ -1019,11 +1033,24 @@
         </div>
 
         <!-- Stylist Content (new tab) -->
-        <div id="stylist-content" class="tab-content">
+        <div id="stylist-content" class="tab-content" style="position:relative;min-height:600px;">
             <!-- Stylist experimental site embedded directly -->
             <style>
             /* --- Stylist Tab Styles --- */
-            body.stylist-tab { background: linear-gradient(120deg, #e0c3fc, #8ec5fc, #e0c3fc 80%); }
+            #stylist-content { position:relative; min-height:600px; }
+            #stylist-consent {
+                position: absolute;
+                top: 0; left: 0; right: 0; bottom: 0;
+                width: 100%;
+                height: 100%;
+                background: #291649e7;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 11;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
             #stylist-main { background: rgba(255,255,255,0.94); box-shadow: 0 4px 36px #d5d7f24a;
               border-radius: 20px; padding: 2rem 2.5rem; max-width: 370px; min-width: 280px; min-height:390px; margin:2rem auto; text-align:center; position:relative;}
             .stylist-bigbutton { background: #311b58; color:white; border:none;border-radius:33px;
