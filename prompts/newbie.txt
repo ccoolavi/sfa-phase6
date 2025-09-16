@@ -1,0 +1,66 @@
+# Newbie Workflow - Prompt Templates
+
+## Introduction Questions for New Users
+
+### Basic Information Gathering
+1. What is your current role or position?
+2. How familiar are you with [system/platform]? (Beginner/Intermediate/Advanced)
+3. What are you hoping to accomplish today?
+4. Do you have any specific deadlines or time constraints?
+
+### Goal Setting Questions
+1. What would success look like for you in this task?
+2. Are there any specific outcomes you need to achieve?
+3. What challenges have you faced with similar tasks before?
+4. How will this fit into your overall workflow?
+
+## Prompt Skeletons for Newbie Workflows
+
+### Task Breakdown Template
+```
+I'm new to [TOPIC/SYSTEM] and need to [SPECIFIC_GOAL]. 
+My experience level is [BEGINNER/LIMITED].
+Can you break this down into simple, step-by-step instructions?
+Please explain any technical terms as you go.
+```
+
+### Learning-Focused Template
+```
+I'm learning [SKILL/TOPIC] and want to [OBJECTIVE].
+What are the fundamental concepts I should understand first?
+Can you provide examples and explain why each step is important?
+```
+
+### Guided Assistance Template
+```
+I need help with [TASK] but I'm not sure where to start.
+Can you guide me through the process?
+Please let me know if I need any specific tools or prerequisites.
+```
+
+### Error Resolution Template
+```
+I'm getting [ERROR/ISSUE] when trying to [ACTION].
+I'm new to this, so I might be missing something basic.
+Can you help me understand what went wrong and how to fix it?
+```
+
+## Follow-up Questions
+
+### Comprehension Check
+- Does this make sense so far?
+- Do you need me to explain any of these steps in more detail?
+- Are there any concepts that seem unclear?
+
+### Next Steps
+- What would you like to tackle next?
+- Do you feel ready to try this on your own?
+- Would you like me to watch for common mistakes as you proceed?
+
+## Tips for Newbie Success
+
+1. **Start Small**: Break complex tasks into smaller, manageable pieces
+2. **Ask Questions**: Don't hesitate to ask for clarification
+3. **Practice**: Try each step before moving to the next
+4. **Document**: Keep notes of what works for future reference
+5. **Be Patient**: Learning takes time, and mistakes are part of the process
