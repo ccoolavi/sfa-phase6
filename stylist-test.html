@@ -1,1 +1,326 @@
-<!DOCTYPE html><html><head><title>Stylist Test</title></head><body><h1>Your Stylist Test Placeholder</h1></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Stylist - Sujata Fashion Academy</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/stylist.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <img src="assets/images/logo/sfa-logo.png" alt="Sujata Fashion Academy" class="logo-img">
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="#academy" class="nav-link">Academy</a></li>
+                    <li><a href="product.html" class="nav-link">Products</a></li>
+                    <li><a href="#stylist" class="nav-link active">Your Stylist</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="stylist-main">
+        <!-- Hero Section -->
+        <section class="stylist-hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Your Personal Stylist</h1>
+                    <p class="hero-subtitle">Discover your unique style with AI-powered fashion recommendations</p>
+                    <div class="hero-cta">
+                        <button class="btn btn-primary" id="start-styling">Start Your Style Journey</button>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="style-preview">
+                        <div class="preview-placeholder">Style Preview Area</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Style Assessment Section -->
+        <section class="style-assessment" id="assessment">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Style Assessment</h2>
+                    <p>Tell us about your preferences to get personalized recommendations</p>
+                </div>
+                
+                <div class="assessment-form">
+                    <!-- Body Type Selection -->
+                    <div class="form-group">
+                        <label class="form-label">Body Type</label>
+                        <div class="option-grid">
+                            <div class="option-card" data-value="pear">
+                                <div class="option-icon">👗</div>
+                                <span>Pear</span>
+                            </div>
+                            <div class="option-card" data-value="apple">
+                                <div class="option-icon">👗</div>
+                                <span>Apple</span>
+                            </div>
+                            <div class="option-card" data-value="hourglass">
+                                <div class="option-icon">👗</div>
+                                <span>Hourglass</span>
+                            </div>
+                            <div class="option-card" data-value="rectangle">
+                                <div class="option-icon">👗</div>
+                                <span>Rectangle</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Style Preference -->
+                    <div class="form-group">
+                        <label class="form-label">Style Preference</label>
+                        <div class="option-grid">
+                            <div class="option-card" data-value="casual">
+                                <div class="option-icon">👕</div>
+                                <span>Casual</span>
+                            </div>
+                            <div class="option-card" data-value="formal">
+                                <div class="option-icon">👔</div>
+                                <span>Formal</span>
+                            </div>
+                            <div class="option-card" data-value="boho">
+                                <div class="option-icon">🌸</div>
+                                <span>Boho</span>
+                            </div>
+                            <div class="option-card" data-value="edgy">
+                                <div class="option-icon">🖤</div>
+                                <span>Edgy</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Color Preferences -->
+                    <div class="form-group">
+                        <label class="form-label">Favorite Colors</label>
+                        <div class="color-palette">
+                            <div class="color-option" data-color="red" style="background: #FF6B6B"></div>
+                            <div class="color-option" data-color="blue" style="background: #4ECDC4"></div>
+                            <div class="color-option" data-color="green" style="background: #45B7D1"></div>
+                            <div class="color-option" data-color="yellow" style="background: #FFA726"></div>
+                            <div class="color-option" data-color="purple" style="background: #AB47BC"></div>
+                            <div class="color-option" data-color="pink" style="background: #EC407A"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button class="btn btn-secondary" id="reset-form">Reset</button>
+                        <button class="btn btn-primary" id="get-recommendations">Get My Recommendations</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recommendations Section -->
+        <section class="recommendations" id="recommendations" style="display: none;">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Your Style Recommendations</h2>
+                    <p>Based on your preferences, here are our top picks for you</p>
+                </div>
+                
+                <div class="recommendation-grid">
+                    <!-- Outfit 1 -->
+                    <div class="recommendation-card">
+                        <div class="card-image">
+                            <div class="image-placeholder">Outfit 1</div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Elegant Casual</h3>
+                            <p>Perfect for weekend outings</p>
+                            <div class="card-actions">
+                                <button class="btn btn-outline">View Details</button>
+                                <button class="btn btn-primary">Shop Look</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Outfit 2 -->
+                    <div class="recommendation-card">
+                        <div class="card-image">
+                            <div class="image-placeholder">Outfit 2</div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Office Chic</h3>
+                            <p>Professional yet stylish</p>
+                            <div class="card-actions">
+                                <button class="btn btn-outline">View Details</button>
+                                <button class="btn btn-primary">Shop Look</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Outfit 3 -->
+                    <div class="recommendation-card">
+                        <div class="card-image">
+                            <div class="image-placeholder">Outfit 3</div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Evening Glam</h3>
+                            <p>For special occasions</p>
+                            <div class="card-actions">
+                                <button class="btn btn-outline">View Details</button>
+                                <button class="btn btn-primary">Shop Look</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Virtual Try-On Section -->
+        <section class="virtual-tryon">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Virtual Try-On</h2>
+                    <p>See how outfits look on you before you buy</p>
+                </div>
+                
+                <div class="tryon-interface">
+                    <div class="upload-area">
+                        <div class="upload-placeholder">
+                            <div class="upload-icon">📷</div>
+                            <p>Upload your photo or use camera</p>
+                            <button class="btn btn-outline" id="upload-photo">Choose Photo</button>
+                        </div>
+                    </div>
+                    
+                    <div class="tryon-controls">
+                        <div class="control-group">
+                            <label>Select Outfit:</label>
+                            <select class="outfit-selector">
+                                <option value="">Choose an outfit...</option>
+                                <option value="casual-1">Casual Look 1</option>
+                                <option value="formal-1">Formal Look 1</option>
+                                <option value="party-1">Party Look 1</option>
+                            </select>
+                        </div>
+                        
+                        <div class="control-group">
+                            <button class="btn btn-primary" id="try-on">Try On</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Style Tips Section -->
+        <section class="style-tips">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Style Tips & Trends</h2>
+                    <p>Expert advice to elevate your fashion game</p>
+                </div>
+                
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <div class="tip-icon">💡</div>
+                        <h3>Color Coordination</h3>
+                        <p>Learn how to mix and match colors for stunning combinations</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <div class="tip-icon">📐</div>
+                        <h3>Body Shape Guide</h3>
+                        <p>Discover styles that flatter your unique body shape</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <div class="tip-icon">✨</div>
+                        <h3>Seasonal Trends</h3>
+                        <p>Stay updated with the latest fashion trends and seasonal must-haves</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Sujata Fashion Academy</h4>
+                    <p>Empowering your style journey with expert guidance and AI-powered recommendations.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#academy">Academy</a></li>
+                        <li><a href="product.html">Products</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link">Instagram</a>
+                        <a href="#" class="social-link">Facebook</a>
+                        <a href="#" class="social-link">Pinterest</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Sujata Fashion Academy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/stylist.js"></script>
+    
+    <!-- Stage 0 Implementation Notes -->
+    <!-- 
+    STAGE 0 UI IMPLEMENTATION PLAN:
+    
+    1. BASIC STRUCTURE ✓
+       - Complete HTML scaffolding with semantic sections
+       - Navigation integration matching site architecture
+       - Responsive container structure
+    
+    2. KEY FEATURES INCLUDED:
+       - Style Assessment Form with interactive options
+       - Recommendation Display Area
+       - Virtual Try-On Interface placeholder
+       - Style Tips Section
+       - Proper navigation integration
+    
+    3. NEXT STEPS FOR FULL IMPLEMENTATION:
+       - Create stylist.css for custom styling
+       - Implement stylist.js for interactivity
+       - Add responsive design breakpoints
+       - Integrate with existing site styles
+       - Add form validation and data handling
+       - Implement recommendation algorithm
+       - Add image upload functionality
+    
+    4. TECHNICAL REQUIREMENTS:
+       - Follows existing site architecture
+       - Uses semantic HTML5 elements
+       - Accessible form controls and ARIA labels
+       - Modular CSS class naming convention
+       - Progressive enhancement approach
+    
+    5. USER FLOW:
+       Home → Your Stylist → Assessment → Recommendations → Virtual Try-On
+    
+    This scaffolding provides the foundation for the complete stylist feature
+    while maintaining consistency with the existing site design and architecture.
+    -->
+</body>
+</html>
