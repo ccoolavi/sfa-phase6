@@ -1,326 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Stylist - Sujata Fashion Academy</title>
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/stylist.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Your Stylist - Sujata Fashion</title>
+  <style>
+    body { margin: 0; padding: 0; min-height:100vh; font-family:'Segoe UI',Arial,sans-serif;
+      background: linear-gradient(120deg, #e0c3fc, #8ec5fc, #e0c3fc 80%);
+      animation: bgmove 9s ease-in-out infinite alternate; display: flex; justify-content: center; align-items: center; overflow: hidden;}
+    @keyframes bgmove {to {background-position: 100vw 100vh;}}
+    #main { background: rgba(255,255,255,0.94); box-shadow: 0 4px 36px #d5d7f24a;
+      border-radius: 20px; padding: 2rem 2.5rem; max-width: 370px; min-width: 280px; min-height:390px; margin:2rem; text-align:center; position:relative;}
+    .bigbutton { background: #311b58; color:white; border:none;border-radius:33px;
+      padding:1.2rem 2.4rem;font-size:1.4rem;cursor:pointer;margin:3rem auto 2rem;width:98%;max-width:330px;font-weight:600;transition:.2s;box-shadow:0 2px 8px #b69df14a;}
+    .bigbutton:hover {background: #502688;}
+    .bubble{max-width:79%;padding:.8em 1.3em;border-radius:19px;display:inline-block;
+      font-size:1.06em;margin-top:10px;box-shadow:0 2px 6px #c9d1ec2a;}
+    .bubble.ai{background:#f4ecfe;align-self:flex-start; color:#5f3385;border-bottom-left-radius:5px;}
+    .bubble.user{background:#e9eafb;align-self:flex-end; color:#222;border-bottom-right-radius:5px;}
+    #chatbox{display:flex;flex-direction:column;align-items:flex-start;gap:3px;margin:1.2rem 0 0 0;min-height:110px;}
+    #answerinput {border-radius:25px;padding:.6em 1em;border:1px solid #eee;font-size:1.05em;width:73%;margin-top:1.2em}
+    #sendbtn{border:none;background:#7a42da;color:white;padding:.57em 1.18em;border-radius:18px;margin-left:.7em;cursor:pointer}
+    .options{display:flex;flex-direction:column;align-items:center;margin:1.5em 0 1em 0;}
+    .optionbtn{border:1px solid #be5ef6;color:#623c93;background:white;border-radius:1.15em;padding:.6em 1.6em;font-weight:500;cursor:pointer;margin:5px 0;width:85%;max-width:250px;font-size:1.08em;transition:.18s}
+    .optionbtn:hover{background:#e4cef7}
+    #loader{margin:23px;font-size:1.1em;animation:pulse 1.2s infinite alternate;}
+    @keyframes pulse{to{opacity:.3}}
+    #overlay, #consent {position:fixed;top:0;left:0;width:100vw;height:100vh;background:#291649e7;display:flex;align-items:center;justify-content:center;z-index:11}
+    #consent{text-align:center;color:white;flex-direction:column;}
+    #consent button{margin-top:30px;background:#fff;color:#6336a9;font-weight:700;padding:1em 2em;border:none;border-radius:19px;cursor:pointer;font-size:1.1em}
+    #recaptcha {margin:17px auto;display:none;}
+    .mininote{font-size:.97em;color:#8d73b8;}
+  </style>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
-    <!-- Header Section -->
-    <header class="main-header">
-        <div class="container">
-            <div class="logo">
-                <img src="assets/images/logo/sfa-logo.png" alt="Sujata Fashion Academy" class="logo-img">
-            </div>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="index.html" class="nav-link">Home</a></li>
-                    <li><a href="#academy" class="nav-link">Academy</a></li>
-                    <li><a href="product.html" class="nav-link">Products</a></li>
-                    <li><a href="#stylist" class="nav-link active">Your Stylist</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+<div id="consent" style="display:flex">
+  <div>
+    <h2>Before we start...</h2>
+    <p><b>Sujata Fashion</b> will only use your answers/images to help you find fashion styles.<br>
+      We don't sell or share your data. Your session is private.</p>
+    <p style="font-size:.97em;color:#eec;">By continuing you consent to this.<br>
+      <span class="mininote">You can end at any time.</span>
+    </p>
+    <button onclick="acceptConsent()">I Consent & Start</button>
+  </div>
+</div>
+<div id="main" style="display:none;">
+  <div id="recaptcha" class="g-recaptcha"
+      data-sitekey="6Lf8vsorAAAAAJQd9uPgTMw7rWjmmLRLID9L-KR_"
+      data-callback="captchaPassed"></div>
+  <div id="startwrap" style="display:flex;flex-direction:column;align-items:center;">
+    <button id="startbtn" class="bigbutton">Start Styling Your New Outfit</button>
+  </div>
+  <div id="modal" style="display:none;">
+    <h3>Who are you?</h3>
+    <button class="optionbtn" onclick="chooseType('newbie')">I am a Newbie</button>
+    <button class="optionbtn" onclick="chooseType('professional')">I am a Professional</button>
+  </div>
+  <div id="chatwrap" style="display:none;flex-direction:column;align-items:center;">
+    <div id="chatbox"></div>
+    <form id="answerform" style="display:flex;margin-top:11px;" onsubmit="return sendAnswer()">
+      <input id="answerinput" type="text" autocomplete="off" disabled placeholder="Type your answer...">
+      <button id="sendbtn" type="submit" disabled>Send</button>
+    </form>
+    <div id="loader" style="display:none;">Crafting your look...</div>
+    <div class="options" id="finaloptions" style="display:none"></div>
+  </div>
+</div>
+<script>
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzF6tnq3255H6BqKuoXMmq6A2KFGjqzImU4eQUi3Igew47zAxe6kuhGpPdUlKLqqmniOA/exec';
+let sessionId='', userToken='', identity='', step=0, waiting=false, captchaGood=false;
+let tryCount = 0, firstTryAt = 0;
 
-    <!-- Main Content -->
-    <main class="stylist-main">
-        <!-- Hero Section -->
-        <section class="stylist-hero">
-            <div class="container">
-                <div class="hero-content">
-                    <h1 class="hero-title">Your Personal Stylist</h1>
-                    <p class="hero-subtitle">Discover your unique style with AI-powered fashion recommendations</p>
-                    <div class="hero-cta">
-                        <button class="btn btn-primary" id="start-styling">Start Your Style Journey</button>
-                    </div>
-                </div>
-                <div class="hero-visual">
-                    <div class="style-preview">
-                        <div class="preview-placeholder">Style Preview Area</div>
-                    </div>
-                </div>
-            </div>
-        </section>
+// Consent modal acceptance
+function acceptConsent() {
+  document.getElementById('consent').style.display = 'none';
+  document.getElementById('main').style.display = 'block';
+}
+window.acceptConsent = acceptConsent;
 
-        <!-- Style Assessment Section -->
-        <section class="style-assessment" id="assessment">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Style Assessment</h2>
-                    <p>Tell us about your preferences to get personalized recommendations</p>
-                </div>
-                
-                <div class="assessment-form">
-                    <!-- Body Type Selection -->
-                    <div class="form-group">
-                        <label class="form-label">Body Type</label>
-                        <div class="option-grid">
-                            <div class="option-card" data-value="pear">
-                                <div class="option-icon">👗</div>
-                                <span>Pear</span>
-                            </div>
-                            <div class="option-card" data-value="apple">
-                                <div class="option-icon">👗</div>
-                                <span>Apple</span>
-                            </div>
-                            <div class="option-card" data-value="hourglass">
-                                <div class="option-icon">👗</div>
-                                <span>Hourglass</span>
-                            </div>
-                            <div class="option-card" data-value="rectangle">
-                                <div class="option-icon">👗</div>
-                                <span>Rectangle</span>
-                            </div>
-                        </div>
-                    </div>
+// Captcha callback
+function captchaPassed() {
+  captchaGood = true;
+  tryCount = 0;
+  document.getElementById('recaptcha').style.display = 'none';
+}
+window.captchaPassed = captchaPassed;
 
-                    <!-- Style Preference -->
-                    <div class="form-group">
-                        <label class="form-label">Style Preference</label>
-                        <div class="option-grid">
-                            <div class="option-card" data-value="casual">
-                                <div class="option-icon">👕</div>
-                                <span>Casual</span>
-                            </div>
-                            <div class="option-card" data-value="formal">
-                                <div class="option-icon">👔</div>
-                                <span>Formal</span>
-                            </div>
-                            <div class="option-card" data-value="boho">
-                                <div class="option-icon">🌸</div>
-                                <span>Boho</span>
-                            </div>
-                            <div class="option-card" data-value="edgy">
-                                <div class="option-icon">🖤</div>
-                                <span>Edgy</span>
-                            </div>
-                        </div>
-                    </div>
+// Start button click handler with smart reCAPTCHA logic
+document.getElementById('startbtn').onclick = ()=>{
+  let now = Date.now();
+  if (!firstTryAt || now - firstTryAt > 30000) { firstTryAt = now; tryCount = 0; }
+  tryCount++;
 
-                    <!-- Color Preferences -->
-                    <div class="form-group">
-                        <label class="form-label">Favorite Colors</label>
-                        <div class="color-palette">
-                            <div class="color-option" data-color="red" style="background: #FF6B6B"></div>
-                            <div class="color-option" data-color="blue" style="background: #4ECDC4"></div>
-                            <div class="color-option" data-color="green" style="background: #45B7D1"></div>
-                            <div class="color-option" data-color="yellow" style="background: #FFA726"></div>
-                            <div class="color-option" data-color="purple" style="background: #AB47BC"></div>
-                            <div class="color-option" data-color="pink" style="background: #EC407A"></div>
-                        </div>
-                    </div>
+  // Only show captcha on third+ try within 30s
+  if(tryCount >= 3 && !captchaGood) {
+    document.getElementById('recaptcha').style.display = 'block';
+    alert('Please solve the Captcha before continuing.');
+    return;
+  }
+  if (tryCount < 3 || captchaGood) {
+    document.getElementById('startwrap').style.display = 'none';
+    document.getElementById('modal').style.display = 'block';
+  }
+};
 
-                    <div class="form-actions">
-                        <button class="btn btn-secondary" id="reset-form">Reset</button>
-                        <button class="btn btn-primary" id="get-recommendations">Get My Recommendations</button>
-                    </div>
-                </div>
-            </div>
-        </section>
+function chooseType(type) {
+  identity=type;
+  document.getElementById('modal').style.display = 'none';
+  showChat();
+  fetch(SCRIPT_URL+'?action=start', {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({identity})
+  })
+  .then(r=>r.json()).then(d=>{
+    sessionId = d.session_id;
+    userToken = d.user_token;
+    addBubble('Hi! Let\'s get you styled. Please answer a few questions.', 'ai');
+    enableAnswer();
+  })
+  .catch(()=>{addBubble('Oops! Could not start session.', 'ai');});
+}
+window.chooseType=chooseType;
 
-        <!-- Recommendations Section -->
-        <section class="recommendations" id="recommendations" style="display: none;">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Your Style Recommendations</h2>
-                    <p>Based on your preferences, here are our top picks for you</p>
-                </div>
-                
-                <div class="recommendation-grid">
-                    <!-- Outfit 1 -->
-                    <div class="recommendation-card">
-                        <div class="card-image">
-                            <div class="image-placeholder">Outfit 1</div>
-                        </div>
-                        <div class="card-content">
-                            <h3>Elegant Casual</h3>
-                            <p>Perfect for weekend outings</p>
-                            <div class="card-actions">
-                                <button class="btn btn-outline">View Details</button>
-                                <button class="btn btn-primary">Shop Look</button>
-                            </div>
-                        </div>
-                    </div>
+function showChat(){
+  document.getElementById('chatwrap').style.display='flex';
+  document.getElementById('chatbox').innerHTML='';
+}
 
-                    <!-- Outfit 2 -->
-                    <div class="recommendation-card">
-                        <div class="card-image">
-                            <div class="image-placeholder">Outfit 2</div>
-                        </div>
-                        <div class="card-content">
-                            <h3>Office Chic</h3>
-                            <p>Professional yet stylish</p>
-                            <div class="card-actions">
-                                <button class="btn btn-outline">View Details</button>
-                                <button class="btn btn-primary">Shop Look</button>
-                            </div>
-                        </div>
-                    </div>
+function addBubble(text, who){
+  let b=document.createElement('div');
+  b.className='bubble '+(who||'ai');
+  b.innerText=text; document.getElementById('chatbox').append(b);
+  document.getElementById('chatbox').scrollTop=99999;
+}
 
-                    <!-- Outfit 3 -->
-                    <div class="recommendation-card">
-                        <div class="card-image">
-                            <div class="image-placeholder">Outfit 3</div>
-                        </div>
-                        <div class="card-content">
-                            <h3>Evening Glam</h3>
-                            <p>For special occasions</p>
-                            <div class="card-actions">
-                                <button class="btn btn-outline">View Details</button>
-                                <button class="btn btn-primary">Shop Look</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+function sendAnswer(){
+  let inp=document.getElementById('answerinput');
+  let val=inp.value.trim();
+  if(!val || !sessionId) return false;
+  inp.value=''; inp.disabled = true;
+  document.getElementById('sendbtn').disabled=true;
+  addBubble(val, 'user');
+  showLoader(true);
+  fetch(SCRIPT_URL+'?action=message', {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({session_id:sessionId, user_token:userToken, msg:val})
+  })
+  .then(r=>r.json())
+  .then(d=>{
+    showLoader(false);
+    if(d.next_question) { addBubble(d.next_question, 'ai'); enableAnswer(); }
+    if(d.options && d.options.length) { finalOptions(d.options); }
+    if(d.image_url) { showImage(d.image_url); }
+  });
+  return false;
+}
+window.sendAnswer=sendAnswer;
 
-        <!-- Virtual Try-On Section -->
-        <section class="virtual-tryon">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Virtual Try-On</h2>
-                    <p>See how outfits look on you before you buy</p>
-                </div>
-                
-                <div class="tryon-interface">
-                    <div class="upload-area">
-                        <div class="upload-placeholder">
-                            <div class="upload-icon">📷</div>
-                            <p>Upload your photo or use camera</p>
-                            <button class="btn btn-outline" id="upload-photo">Choose Photo</button>
-                        </div>
-                    </div>
-                    
-                    <div class="tryon-controls">
-                        <div class="control-group">
-                            <label>Select Outfit:</label>
-                            <select class="outfit-selector">
-                                <option value="">Choose an outfit...</option>
-                                <option value="casual-1">Casual Look 1</option>
-                                <option value="formal-1">Formal Look 1</option>
-                                <option value="party-1">Party Look 1</option>
-                            </select>
-                        </div>
-                        
-                        <div class="control-group">
-                            <button class="btn btn-primary" id="try-on">Try On</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+function enableAnswer() { document.getElementById('answerinput').disabled=false; document.getElementById('sendbtn').disabled=false; }
 
-        <!-- Style Tips Section -->
-        <section class="style-tips">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Style Tips & Trends</h2>
-                    <p>Expert advice to elevate your fashion game</p>
-                </div>
-                
-                <div class="tips-grid">
-                    <div class="tip-card">
-                        <div class="tip-icon">💡</div>
-                        <h3>Color Coordination</h3>
-                        <p>Learn how to mix and match colors for stunning combinations</p>
-                    </div>
-                    
-                    <div class="tip-card">
-                        <div class="tip-icon">📐</div>
-                        <h3>Body Shape Guide</h3>
-                        <p>Discover styles that flatter your unique body shape</p>
-                    </div>
-                    
-                    <div class="tip-card">
-                        <div class="tip-icon">✨</div>
-                        <h3>Seasonal Trends</h3>
-                        <p>Stay updated with the latest fashion trends and seasonal must-haves</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+function showLoader(show){ document.getElementById('loader').style.display=show?'block':'none'; }
 
-    <!-- Footer -->
-    <footer class="main-footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Sujata Fashion Academy</h4>
-                    <p>Empowering your style journey with expert guidance and AI-powered recommendations.</p>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="#academy">Academy</a></li>
-                        <li><a href="product.html">Products</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Connect</h4>
-                    <div class="social-links">
-                        <a href="#" class="social-link">Instagram</a>
-                        <a href="#" class="social-link">Facebook</a>
-                        <a href="#" class="social-link">Pinterest</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2025 Sujata Fashion Academy. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+function showImage(url){
+  let img=document.createElement('img');
+  img.src=url; img.style='display:block;width:96%;max-width:290px;margin:19px auto 5px;border-radius:13px;box-shadow:0 3px 16px #6e55e031;';
+  document.getElementById('chatbox').append(img);
+}
 
-    <!-- Scripts -->
-    <script src="js/main.js"></script>
-    <script src="js/stylist.js"></script>
-    
-    <!-- Stage 0 Implementation Notes -->
-    <!-- 
-    STAGE 0 UI IMPLEMENTATION PLAN:
-    
-    1. BASIC STRUCTURE ✓
-       - Complete HTML scaffolding with semantic sections
-       - Navigation integration matching site architecture
-       - Responsive container structure
-    
-    2. KEY FEATURES INCLUDED:
-       - Style Assessment Form with interactive options
-       - Recommendation Display Area
-       - Virtual Try-On Interface placeholder
-       - Style Tips Section
-       - Proper navigation integration
-    
-    3. NEXT STEPS FOR FULL IMPLEMENTATION:
-       - Create stylist.css for custom styling
-       - Implement stylist.js for interactivity
-       - Add responsive design breakpoints
-       - Integrate with existing site styles
-       - Add form validation and data handling
-       - Implement recommendation algorithm
-       - Add image upload functionality
-    
-    4. TECHNICAL REQUIREMENTS:
-       - Follows existing site architecture
-       - Uses semantic HTML5 elements
-       - Accessible form controls and ARIA labels
-       - Modular CSS class naming convention
-       - Progressive enhancement approach
-    
-    5. USER FLOW:
-       Home → Your Stylist → Assessment → Recommendations → Virtual Try-On
-    
-    This scaffolding provides the foundation for the complete stylist feature
-    while maintaining consistency with the existing site design and architecture.
-    -->
+function finalOptions(opts){
+  let c=document.getElementById('finaloptions');
+  c.innerHTML='';
+  if(!opts.length) return;
+  c.style.display='block';
+  opts.forEach(opt=>{
+    let btn=document.createElement('button');
+    btn.className='optionbtn';
+    btn.innerText=opt.text||opt;
+    btn.onclick=()=>sendFinal(opt.value||opt.text||opt);
+    c.appendChild(btn);
+  });
+}
+
+function sendFinal(choice){
+  showLoader(true);
+  fetch(SCRIPT_URL+'?action=choice', {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({session_id:sessionId, user_token:userToken, choice:choice})
+  })
+  .then(r=>r.json()).then(d=>{
+    showLoader(false);
+    // Optional: process d.next or reset UI etc
+  });
+}
+</script>
 </body>
 </html>
