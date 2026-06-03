@@ -76,14 +76,12 @@ function switchTab(tabName) {
 async function loadExcelData() {
     try {
         console.log('Loading Excel data...');
-        
-        // Try to load from Excel file first
-        const response = await fetch('sujata-fashion-data.xlsx');
+        const TESTIMONIALS_CSV_URL = 'https://docs.google.com/spreadsheets/d/1JT5j6xifWkRcaeZIDzQjhB1RArzFEyqxSLQxnAObfms/export?format=csv&gid=1511834451';
+        const response = await fetch(TESTIMONIALS_CSV_URL);
         if (response.ok) {
-            const arrayBuffer = await response.arrayBuffer();
-            await parseExcelFile(arrayBuffer);
+            const csvText = await response.text();
+            siteData.testimonials = parseCSV(csvText);
         } else {
-            console.warn('Excel file not found, loading sample data...');
             loadSampleData();
         }
         
@@ -97,43 +95,17 @@ async function loadExcelData() {
     }
 }
 
-async function parseExcelFile(arrayBuffer) {
-    try {
-        const workbook = XLSX.read(arrayBuffer, { type: 'array' });
-        
-        // Parse each sheet
-        if (workbook.SheetNames.includes('Sale')) {
-            const saleSheet = workbook.Sheets['Sale'];
-            siteData.products = XLSX.utils.sheet_to_json(saleSheet);
-        }
-        
-        if (workbook.SheetNames.includes('Rental')) {
-            const rentalSheet = workbook.Sheets['Rental'];
-            siteData.rentals = XLSX.utils.sheet_to_json(rentalSheet);
-        }
-        
-        if (workbook.SheetNames.includes('Testimonials')) {
-            const testimonialsSheet = workbook.Sheets['Testimonials'];
-            siteData.testimonials = XLSX.utils.sheet_to_json(testimonialsSheet);
-        }
-        
-        if (workbook.SheetNames.includes('Categories')) {
-            const categoriesSheet = workbook.Sheets['Categories'];
-            const categoriesArray = XLSX.utils.sheet_to_json(categoriesSheet);
-            siteData.categories = {};
-            categoriesArray.forEach(cat => {
-                siteData.categories[cat.CategoryID] = cat.CategoryName;
-            });
-        }
-        
-        console.log('Excel data parsed successfully:', siteData);
-        
-    } catch (error) {
-        console.error('Error parsing Excel file:', error);
-        throw error;
-    }
+function parseCSV(csvText) {
+    const lines = csvText.split('\n');
+    if (lines.length < 2) return [];
+    const headers = lines[0].split(',').map(h => h.trim());
+    return lines.slice(1).map(line => {
+        const values = line.split(',').map(v => v.trim());
+        const obj = {};
+        headers.forEach((h, i) => obj[h] = values[i]);
+        return obj;
+    });
 }
-
 function loadSampleData() {
     console.log('Loading sample data...');
     

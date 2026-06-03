@@ -9,7 +9,7 @@ console.log('Excel Handler loading...');
 
 // Google Sheets CSV URLs with correct GID numbers
 const SHOP_CSV_URL = 'https://docs.google.com/spreadsheets/d/1JT5j6xifWkRcaeZIDzQjhB1RArzFEyqxSLQxnAObfms/export?format=csv&gid=1717675571';
-const RENTAL_CSV_URL = 'https://docs.google.com/spreadsheets/d/1JT5j6xifWkRcaeZIDzQjhB1RArzFEyqxSLQxnAObfms/export?format=csv&gid=1815405474';
+const RENTAL_CSV_URL = 'https://docs.google.com/spreadsheets/d/1JT5j6xifWkRcaeZIDzQjhB1RArzFEyqxSLQxnAObfms/export?format=csv&gid=141747508';
 
 // WhatsApp configuration
 const WHATSAPP_NUMBER = '+919763416561';
